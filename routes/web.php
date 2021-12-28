@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ShopController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,7 @@ Route::get('/', function () {
 
 Route::get('shop',[ShopController::class,'show']);
 
-Route::get('game/',function(){
-    return view('game');
-});
+
 Route::get('books/',function(){
     return view('books');
 });
@@ -35,5 +34,25 @@ Route::get('cd/',function(){
 Route::get('login/',function(){
     return view('login');
 });
+//Book Routes
+
+Route::get('book/book-form',[BookController::class,'create']);
+
+
+// Game Route
+
+Route::get('game/',[GameController::class,'index'])->name('game');
+Route::get('game/game-form',[GameController::class,'create'])->name('game-form');
+Route::post('game/game-form',[GameController::class,'store']);
+Route::get('/game/edit-game-form/{id}',[GameController::class,'edit']);
+Route::get('game/delete/{id}',[GameController::class,'destroy']);
+
+//Form
+
+Route::get('signupform/',function(){
+    return view('signup');
+});
+
+
 
 

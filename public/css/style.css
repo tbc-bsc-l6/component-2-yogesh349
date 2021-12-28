@@ -189,3 +189,23 @@ footer{
     line-height:2;
 }
 /* CD Page */
+
+
+/* User form */
+
+.user_login{
+    margin: 45px 3px 0px 322px;
+}
+
+/* Login Form */
+.login_form{
+    margin-left: 165px;
+}
+.register_flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.register_linkflex{
+    margin-right: 19em;
+}
