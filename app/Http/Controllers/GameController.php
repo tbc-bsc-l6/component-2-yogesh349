@@ -71,7 +71,6 @@ class GameController extends Controller
             $fileNameToStore='noimage.jpg';
         }
         $game = new Game();
-        print_r($request->gname);
         $game->name=$request->input('gname');
         $game->desc=$request->input('gtextarea');
         $game->price=$request->input('gprice');

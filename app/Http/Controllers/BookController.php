@@ -14,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books=Book::all();
+        return view('books',['books'=>$books]);
         
     }
 
@@ -37,7 +38,49 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+   
+        $validated = $request->validate([
+
+            'bname'=>'required',
+            'btextarea'=>'required',
+            'bprice'=>'required',
+            'bfile'=>'required',
+        ]);
+        
+        echo "Form validated";
+        // ]);
+
+        if($request->hasFile('bfile')){
+
+            $filenameWithExt=$request->file('bfile')->getClientOriginalName();
+
+
+            //get just filename
+            $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+
+            //GET JUST EXTENSION
+            $ext=$request->file('bfile')->getClientOriginalExtension();
+
+            $fileNameToStore=$filename ."_".time().".".$ext;
+
+            $path=$request->file('bfile')->storeAs('public/gfile',$fileNameToStore);
+
+        }else{
+            $fileNameToStore='noimage.jpg';
+        }
+
+        $book = new Book();
+        $book->name=$request->input('bname');
+        $book->desc=$request->input('btextarea');
+        $book->price=$request->input('bprice');
+        $book->images=$fileNameToStore;
+        $book->save();
+
+        session()->flash("success","Your Game Product has been added");
+        return redirect()->route('game-form');
+        
+
+
     }
 
     /**
@@ -57,9 +100,10 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(Book $book,$id)
     {
-        //
+        $book=Book::find(1);
+        return view('edit_bookForm',['book'=>$book]);
     }
 
     /**
@@ -80,8 +124,11 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy(Book $book,$id)
     {
         //
+        Book::destroy($id);
+        session()->flash('delete_success','Your game item has been deleted');
+       return redirect('books');
     }
 }

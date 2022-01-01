@@ -15,6 +15,8 @@ class CDController extends Controller
     public function index()
     {
         //
+        $cd=CD::all();
+        return view('cd',['cds'=>$cd]);
 
     }
 
@@ -38,6 +40,47 @@ class CDController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+
+            'cname'=>'required',
+            'ctextarea'=>'required',
+            'cprice'=>'required',
+            'cfile'=>'required',
+        ]);
+        
+        echo "Form validated";
+        // ]);
+
+        if($request->hasFile('cfile')){
+
+            $filenameWithExt=$request->file('cfile')->getClientOriginalName();
+
+
+            //get just filename
+            $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+
+            //GET JUST EXTENSION
+            $ext=$request->file('cfile')->getClientOriginalExtension();
+
+            $fileNameToStore=$filename ."_".time().".".$ext;
+
+            $path=$request->file('cfile')->storeAs('public/gfile',$fileNameToStore);
+
+        }else{
+            $fileNameToStore='noimage.jpg';
+        }
+
+        $cd = new CD();
+        $cd->name=$request->input('cname');
+        $cd->desc=$request->input('ctextarea');
+        $cd->price=$request->input('cprice');
+        $cd->images=$fileNameToStore;
+        $cd->save();
+
+        session()->flash("success","Your Game Product has been added");
+        return redirect()->route('cd-form');
+
       
 
 
@@ -60,9 +103,11 @@ class CDController extends Controller
      * @param  \App\Models\CD  $cD
      * @return \Illuminate\Http\Response
      */
-    public function edit(CD $cD)
+    public function edit(CD $cD,$id)
     {
         //
+        $cd=CD::find($id);
+        return view('edit_cdform',['cd'=>$cd]);
     }
 
     /**
@@ -83,8 +128,11 @@ class CDController extends Controller
      * @param  \App\Models\CD  $cD
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CD $cD)
+    public function destroy(CD $cD,$id)
     {
         //
+        CD::destroy($id);
+        session()->flash('delete_success','Your game item has been deleted');
+       return redirect('cd');
     }
 }
