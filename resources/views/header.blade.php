@@ -10,12 +10,23 @@
             
         </div>
         <div class="profile-log">
-            <span>Hello Login</span>
-            @auth
-            <button type="button" class="btn btn-warning">Logout</button>
-            @endauth
-            <a href="{{url('login/')}}"><button type="button" class="btn btn-primary m-3">Login</button></a>
+            @if (Auth::guest())
+            {{-- <a href="{{url('login/')}}"><button type="button" class="btn btn-primary m-3">Login</button></a> --}}
+            <a href="{{route('register')}}" class="btn btn-primary m-3 ">Sign up</a>
 
+            @else
+            <span>Welcome,{{ Auth::user()->name }}</span>
+                    <a class="btn btn-danger m-3" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+               
+            
+            @endif
         </div>
     </div>
 

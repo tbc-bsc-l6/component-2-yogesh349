@@ -171,21 +171,20 @@ footer{
     background-color: #f2f2f2;
 }
 
+.f-flex{
+    display: flex;
+    justify-content: center;
+}
 .game-outer{
+
     padding: 55px;
     margin-top: 100px;
-    background-color: #8080ff;
+    background-color: #ffffff8c;
+    border-radius: 9px;
 }
 
-.game-container-form{
-   margin-left:240px;
-  
-   padding: 45px;
-
-
-}
 .custom-form{
-    width: 70%;
+    width: 100%;
     line-height:2;
 }
 /* CD Page */
@@ -216,4 +215,8 @@ footer{
 .pag-cus{
     padding-left: 40%;
 
+}
+
+.forget-pass{
+    margin-left: 20em;
 }

@@ -19,9 +19,7 @@ use App\Http\Controllers\CDController;
 
 Route::get('/', function () {
     return view('home');
-});
-
-Route::get('shop',[ShopController::class,'show']);
+})->middleware('verified');
 
 
 Route::get('login/',function(){
@@ -62,3 +60,7 @@ Route::get('signupform/',function(){
 
 
 
+Auth::routes();
+Auth::routes(['verify' => true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');

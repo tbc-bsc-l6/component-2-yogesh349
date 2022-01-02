@@ -150,7 +150,7 @@
 @endsection
 
 
-@section('best-deal')
+{{-- @section('best-deal')
 <div class="deal">
     <h2 class="text-center mt-2">Best Deals</h2>
     <div class="deal-items">
@@ -217,7 +217,7 @@
     </div>
 </div>
     
-@endsection
+@endsection --}}
 
 
 
