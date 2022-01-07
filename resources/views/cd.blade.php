@@ -45,9 +45,9 @@
             <div class="col-sm-2"> <span>$30.8</span><button type="button" class="btn btn-primary mx-2">Buy</button></div>
             <div class="col-sm-1"> <a href="{{url('cd/edit-cd-form',$cd->id)}}"  class="btn btn-warning"><i class=" fa far fa-edit"></i></a>
                 <a href="{{url('cd/delete',$cd->id)}}" style="font-size: 18px"   class="btn btn-danger mt-3"><i class="fa fad fa-trash"></i></a></div>
-        </div>
-            
+        </div>  
         @endforeach
+        {{$cds->links()}}
     </div>
 
     <div class="container">

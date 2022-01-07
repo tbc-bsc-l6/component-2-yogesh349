@@ -44,7 +44,8 @@
             {{-- @endcan --}}
             
         </div>    
-        @endforeach        
+        @endforeach
+        {{$books->links()}}        
     </div>
 
     <div class="container">

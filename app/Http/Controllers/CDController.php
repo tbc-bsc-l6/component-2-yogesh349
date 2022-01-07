@@ -14,8 +14,8 @@ class CDController extends Controller
      */
     public function index()
     {
-        //
-        $cd=CD::all();
+
+        $cd=CD::paginate(10);
         return view('cd',['cds'=>$cd]);
 
     }
