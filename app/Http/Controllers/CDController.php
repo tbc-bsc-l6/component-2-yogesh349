@@ -43,43 +43,41 @@ class CDController extends Controller
 
         $validated = $request->validate([
 
-            'cname'=>'required',
-            'ctextarea'=>'required',
-            'cprice'=>'required',
-            'cfile'=>'required',
+            'cd_name'=>'required',
+            'cd_textarea'=>'required',
+            'cd_price'=>'required',
+            'cd_file'=>'required',
         ]);
-        
-        echo "Form validated";
-        // ]);
+ 
+    
+        if($request->hasFile('cd_file')){
 
-        if($request->hasFile('cfile')){
-
-            $filenameWithExt=$request->file('cfile')->getClientOriginalName();
+            $filenameWithExt=$request->file('cd_file')->getClientOriginalName();
 
 
             //get just filename
             $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
 
             //GET JUST EXTENSION
-            $ext=$request->file('cfile')->getClientOriginalExtension();
+            $ext=$request->file('cd_file')->getClientOriginalExtension();
 
             $fileNameToStore=$filename ."_".time().".".$ext;
 
-            $path=$request->file('cfile')->storeAs('public/gfile',$fileNameToStore);
+            $path=$request->file('cd_file')->storeAs('public/gfile',$fileNameToStore);
 
         }else{
             $fileNameToStore='noimage.jpg';
         }
 
         $cd = new CD();
-        $cd->name=$request->input('cname');
-        $cd->desc=$request->input('ctextarea');
-        $cd->price=$request->input('cprice');
+        $cd->name=$request->input('cd_name');
+        $cd->desc=$request->input('cd_textarea');
+        $cd->price=$request->input('cd_price');
         $cd->images=$fileNameToStore;
         $cd->save();
 
-        session()->flash("success","Your Game Product has been added");
-        return redirect()->route('cd-form');
+        session()->flash("success","Your CD Product has been added");
+        return redirect()->route('cd');
 
       
 
@@ -117,9 +115,48 @@ class CDController extends Controller
      * @param  \App\Models\CD  $cD
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CD $cD)
+    public function update(Request $request, CD $cD,$id)
     {
         //
+
+        $cd= CD::find($id);
+        
+        $validated = $request->validate([
+
+            'cd_name'=>'required',
+            'cd_textarea'=>'required',
+            'cd_price'=>'required',
+            'cd_file'=>'required',
+        ]);
+
+        if($request->hasFile('cd_file')){
+
+            $filenameWithExt=$request->file('cd_file')->getClientOriginalName();
+
+
+            //get just filename
+            $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+
+            //GET JUST EXTENSION
+            $ext=$request->file('cd_file')->getClientOriginalExtension();
+
+            $fileNameToStore=$filename ."_".time().".".$ext;
+
+            $path=$request->file('cd_file')->storeAs('public/gfile',$fileNameToStore);
+
+        }else{
+            $fileNameToStore='noimage.jpg';
+        }
+
+        $cd->name=$request->input('cd_name');
+        $cd->desc=$request->input('cd_textarea');
+        $cd->price=$request->input('cd_price');
+        $cd->images=$fileNameToStore;
+        $cd->save();
+
+        session()->flash("success-updated","Your CD Product has been updated");
+        return redirect()->route('cd');
+
     }
 
     /**
@@ -132,7 +169,7 @@ class CDController extends Controller
     {
         //
         CD::destroy($id);
-        session()->flash('delete_success','Your game item has been deleted');
+        session()->flash('delete_success','Your CD item has been deleted');
        return redirect('cd');
     }
 }

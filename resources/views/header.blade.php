@@ -3,9 +3,14 @@
         <h1 class="s-item">Clovers.</h1>
         <div class="search">
             <form action="" method="post">
-            <input type="text" placeholder="Search.." />
-            
-                <span class="search-icon"><a href=""><i class="fa fal fa-search"></i></a></span>
+                     <div class="input-group">
+            <input class="form-control border-end-0 border rounded-pill" type="text" value="" id="example-search-input">
+            <span class="search-icon">
+                <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+     </div>
             </form>
             
         </div>

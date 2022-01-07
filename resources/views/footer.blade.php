@@ -7,10 +7,10 @@
             <h5>9814706157</h5>
          </div>
             <div class="list-footer-items">
-                <h2>Collections</h2>
-               <div class="c-footer "><a href="">Books</a></div>
-               <div class="c-footer"><a href="">Cards</a></div>
-               <div class="c-footer"><a href="">Games</a></div>
+                <h2>Collections</h2> 
+               <div><a href="{{url('books/')}}" class="c-footer ">Books</a></div>
+               <div><a href="{{url('cd')}}" class="c-footer ">Cards</a></div>
+               <div><a href="{{url('game/')}}" class="c-footer ">Games</a></div>
                
             </div>
             <div class="socialmedia">

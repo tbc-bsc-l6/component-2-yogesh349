@@ -47,14 +47,13 @@ img{
 
 }
 .search-icon{
-    position: absolute;
-    top: 18px;
-    right: 405px;
+    position: relative;
+    top: 14px;
+    right: 33px;
     width: 71px;
     height: 48px;
-    padding-left: 23px;
+    padding-left: 33px;
     font-size: 30px;
-    background-color: black;
 }
 .s-item{
     padding: 16px;
@@ -62,12 +61,11 @@ img{
 
 }
 .search input[type=text] {
-    border-radius: 4%;
-    padding: 4px 2px;
-    border: none;
+    padding: 4px 20px;
+    border: 2px solid black;
     margin: 18px 10px;
     font-size: 1.5vw;
-    width: 30vw;
+    width: 24vw;
     height: 48px;
   }
   
@@ -116,6 +114,8 @@ img{
     margin-top: 6em;
 }
 
+
+ /*  Footer Css */
 footer{
     background-color: #f2f2f2;
     margin-top: 100px;
@@ -144,7 +144,10 @@ footer{
 } */
 
 .c-footer{
+    color: 	#281415;
     margin: 10px;
+    font-size: 1.2em;
+    text-decoration: none;
 }
 
 .socialmedia{

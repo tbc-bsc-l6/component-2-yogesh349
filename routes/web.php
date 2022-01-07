@@ -19,7 +19,7 @@ use App\Http\Controllers\CDController;
 
 Route::get('/', function () {
     return view('home');
-})->middleware('verified');
+});
 
 
 Route::get('login/',function(){
@@ -29,13 +29,13 @@ Route::get('login/',function(){
 //Book Routes
 Route::get('book/book-form',[BookController::class,'create'])->name('book-form');;
 Route::post('book/book-form',[BookController::class,'store']);
-Route::get('books/',[BookController::class,'index']);
+Route::get('books/',[BookController::class,'index'])->name('books');
 Route::get('/book/edit-book-form/{id}',[BookController::class,'edit']);
 Route::get('book/delete/{id}',[BookController::class,'destroy']);
+Route::put('/book/edit-book-form/{id}',[BookController::class,'update'])->name('update_book');
 
 
 // Game Route
-
 Route::get('game/',[GameController::class,'index'])->name('game');
 Route::get('game/game-form',[GameController::class,'create'])->name('game-form');
 Route::post('game/game-form',[GameController::class,'store']);
@@ -45,21 +45,14 @@ Route::get('game/delete/{id}',[GameController::class,'destroy']);
 
 // CD FORM
 
-Route::get('cd',[CDController::class,'index']);
+Route::get('cd',[CDController::class,'index'])->name('cd');
 Route::get('cd/cd-form',[CDController::class,'create'])->name('cd-form');
 Route::post('cd/cd-form',[CDController::class,'store']);
 Route::get('/cd/edit-cd-form/{id}',[CDController::class,'edit']);
 Route::get('cd/delete/{id}',[CDController::class,'destroy']);
+Route::put('/cd/edit-cd-form/{id}',[CDController::class,'update'])->name('update_cd');
 
 //Form
-
-Route::get('signupform/',function(){
-    return view('signup');
-});
-
-
-
-
 Auth::routes();
 Auth::routes(['verify' => true]);
 

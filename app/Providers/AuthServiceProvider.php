@@ -24,6 +24,21 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        Gate::define('isBookAdmin',function($user){
+            if($user->email==="yogeshchaudhary5760@gmail.com"){
+                return true;
+            }else{
+                return false;
+            }
+        });
+
+        Gate::define('isGameAdmin',function($user){
+            if($user->email==="yogeshchaudhary5760@gmail.com"){
+                return true;
+            }else{
+                return false;
+            }
+        });
 
         //
     }

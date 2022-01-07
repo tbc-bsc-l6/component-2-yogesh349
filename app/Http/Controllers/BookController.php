@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BookController extends Controller
 {
@@ -27,6 +28,9 @@ class BookController extends Controller
     public function create()
     {
         //
+        if(Gate::denies('isBookAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         return view('bookForm');
     }
 
@@ -38,49 +42,42 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-   
         $validated = $request->validate([
 
-            'bname'=>'required',
-            'btextarea'=>'required',
-            'bprice'=>'required',
-            'bfile'=>'required',
+            'book_name'=>'required',
+            'book_textarea'=>'required',
+            'book_price'=>'required',
+            'book_file'=>'required',
         ]);
         
-        echo "Form validated";
-        // ]);
 
-        if($request->hasFile('bfile')){
+        if($request->hasFile('book_file')){
 
-            $filenameWithExt=$request->file('bfile')->getClientOriginalName();
+            $filenameWithExt=$request->file('book_file')->getClientOriginalName();
 
 
             //get just filename
             $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
 
             //GET JUST EXTENSION
-            $ext=$request->file('bfile')->getClientOriginalExtension();
+            $ext=$request->file('book_file')->getClientOriginalExtension();
 
             $fileNameToStore=$filename ."_".time().".".$ext;
 
-            $path=$request->file('bfile')->storeAs('public/gfile',$fileNameToStore);
+            $path=$request->file('book_file')->storeAs('public/gfile',$fileNameToStore);
 
         }else{
             $fileNameToStore='noimage.jpg';
         }
-
         $book = new Book();
-        $book->name=$request->input('bname');
-        $book->desc=$request->input('btextarea');
-        $book->price=$request->input('bprice');
+        $book->name=$request->input('book_name');
+        $book->desc=$request->input('book_textarea');
+        $book->price=$request->input('book_price');
         $book->images=$fileNameToStore;
         $book->save();
 
-        session()->flash("success","Your Game Product has been added");
-        return redirect()->route('game-form');
-        
-
-
+        session()->flash("success","Your Shop Product has been added");
+        return redirect()->route('books'); 
     }
 
     /**
@@ -102,7 +99,11 @@ class BookController extends Controller
      */
     public function edit(Book $book,$id)
     {
-        $book=Book::find(1);
+        
+        $book=Book::find($id);
+        if(Gate::denies('isBookAdmin',$book)){
+            abort(403,'Unauthorized Page Request');
+        }
         return view('edit_bookForm',['book'=>$book]);
     }
 
@@ -113,9 +114,50 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Book $book,$id)
     {
         //
+        $book=Book::find($id);
+
+        $validated = $request->validate([
+
+            'book_name'=>'required',
+            'book_textarea'=>'required',
+            'book_price'=>'required',
+            'book_file'=>'required',
+        ]);
+
+        if($request->hasFile('book_file')){
+
+            $filenameWithExt=$request->file('book_file')->getClientOriginalName();
+
+
+            //get just filename
+            $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+
+            //GET JUST EXTENSION
+            $ext=$request->file('book_file')->getClientOriginalExtension();
+
+            $fileNameToStore=$filename ."_".time().".".$ext;
+
+            $path=$request->file('book_file')->storeAs('public/gfile',$fileNameToStore);
+
+        }else{
+            $fileNameToStore='noimage.jpg';
+        }
+       
+        if(Gate::denies('isBookAdmin',$book)){
+            abort(403,'Unauthorized Page Request');
+        }
+        $book->name=$request->input('book_name');
+        $book->desc=$request->input('book_textarea');
+        $book->price=$request->input('book_price');
+        $book->images=$fileNameToStore;
+        $book->save();
+
+        session()->flash("success","Your Book Product has been updated");
+        return redirect()->route('books');
+       
     }
 
     /**
@@ -128,7 +170,7 @@ class BookController extends Controller
     {
         //
         Book::destroy($id);
-        session()->flash('delete_success','Your game item has been deleted');
-       return redirect('books');
+        session()->flash('delete_success','Your book item has been deleted');
+       return redirect()->route('books');
     }
 }

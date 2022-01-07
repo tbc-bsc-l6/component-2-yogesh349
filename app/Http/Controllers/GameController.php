@@ -43,42 +43,41 @@ class GameController extends Controller
 
         $validated = $request->validate([
 
-            'gname'=>'required',
-            'gtextarea'=>'required',
-            'gprice'=>'required',
-            'gfile'=>'required',
+            'game_name'=>'required',
+            'game_price'=>'required',
+            'game_textarea'=>'required',
+            'game_file'=>'required',
         ]);
         
-        echo "Form validated";
-        // ]);
+        
 
-        if($request->hasFile('gfile')){
+        if($request->hasFile('game_file')){
 
-            $filenameWithExt=$request->file('gfile')->getClientOriginalName();
+            $filenameWithExt=$request->file('game_file')->getClientOriginalName();
 
 
             //get just filename
             $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
 
             //GET JUST EXTENSION
-            $ext=$request->file('gfile')->getClientOriginalExtension();
+            $ext=$request->file('game_file')->getClientOriginalExtension();
 
             $fileNameToStore=$filename ."_".time().".".$ext;
 
-            $path=$request->file('gfile')->storeAs('public/gfile',$fileNameToStore);
+            $path=$request->file('game_file')->storeAs('public/gfile',$fileNameToStore);
 
         }else{
             $fileNameToStore='noimage.jpg';
         }
         $game = new Game();
-        $game->name=$request->input('gname');
-        $game->desc=$request->input('gtextarea');
-        $game->price=$request->input('gprice');
+        $game->name=$request->input('game_name');
+        $game->desc=$request->input('game_textarea');
+        $game->price=$request->input('game_price');
         $game->images=$fileNameToStore;
         $game->save();
 
         session()->flash("success","Your Game Product has been added");
-        return redirect()->route('game-form');
+        return redirect()->route('game');
     }
 
     /**
