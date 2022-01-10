@@ -7,7 +7,7 @@
 
 
 
-
+    <link rel="icon" type="image/x-icon" href="/images/game1.jpg">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

@@ -27,16 +27,32 @@ class ViewAllController extends Controller
         return view('displayCDp',['cd'=>$cd]);
     }
 
-    public function search(){
+    public function search(Request $req){
         $search_product=$_GET['search'] ?? "";
 
         if(!$search_product=null){
             $game=Game::where('name','LIKE',"%".$search_product."%")->get();
             $cd=CD::where('name','LIKE',"%".$search_product."%")->get();
             $book=Book::where('name','LIKE',"%".$search_product."%")->get();
+            if( $req->sort=='price_desc'){
+                $game=Game::orderBy('price', 'desc');
+                $cd=Game::orderBy('price', 'desc');
+                $book=Game::orderBy('price', 'desc');
+            }elseif ($req->sort   =='price_asc') {
+                $game=Game::orderBy('price', 'asc');
+                $cd=Game::orderBy('price', 'asc');
+                $book=Game::orderBy('price', 'asc');
+            }elseif ($req->sort=="newest") {
+                $game=Game::orderBy('created_at','desc');
+                $cd=Game::orderBy('created_at','desc');
+                $book=Game::orderBy('created_at','desc');
+                
+            }
+            
         }else{
             $game=Game::all();
         }
+
         $concatenateAll=$game->concat($cd)->concat($book);
         return view('searchproduct',['concatenateAll'=>$concatenateAll]);
 

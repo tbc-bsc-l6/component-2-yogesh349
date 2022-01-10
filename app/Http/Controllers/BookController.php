@@ -83,12 +83,13 @@ class BookController extends Controller
         }else{
             $fileNameToStore='noimage.jpg';
         }
-        $book = new Book();
-        $book->name=$request->input('book_name');
-        $book->desc=$request->input('book_textarea');
-        $book->price=$request->input('book_price');
-        $book->images=$fileNameToStore;
-        $book->save();
+        Book::create([
+            'name'=>$request->input('game_name'),
+            'desc'=>$request->input('game_textarea'),
+            'price'=>$request->input('game_price'),
+            'images'=>$fileNameToStore
+      
+        ]);
 
         session()->flash("success","Your Shop Product has been added");
         return redirect()->route('books'); 
@@ -169,11 +170,14 @@ class BookController extends Controller
         if(Gate::denies('isBookAdmin',$book)){
             abort(403,'Unauthorized Page Request');
         }
-        $book->name=$request->input('book_name');
-        $book->desc=$request->input('book_textarea');
-        $book->price=$request->input('book_price');
-        $book->images=$fileNameToStore;
-        $book->save();
+        Book::create([
+            'name'=>$request->input('book_name'),
+            'desc'=>$request->input('book_textarea'),
+            'price'=>$request->input('book_price'),
+            'images'=>$fileNameToStore
+      
+        ]);
+
 
         session()->flash("success","Your Book Product has been updated");
         return redirect()->route('books');

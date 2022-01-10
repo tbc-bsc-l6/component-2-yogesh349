@@ -84,12 +84,13 @@ class CDController extends Controller
             $fileNameToStore='noimage.jpg';
         }
 
-        $cd = new CD();
-        $cd->name=$request->input('cd_name');
-        $cd->desc=$request->input('cd_textarea');
-        $cd->price=$request->input('cd_price');
-        $cd->images=$fileNameToStore;
-        $cd->save();
+        CD::create([
+            'name'=>$request->input('cd_name'),
+            'desc'=>$request->input('cd_textarea'),
+            'price'=>$request->input('cd_price'),
+            'images'=>$fileNameToStore
+      
+        ]);
 
         session()->flash("success","Your CD Product has been added");
         return redirect()->route('cd');
@@ -168,12 +169,13 @@ class CDController extends Controller
             $fileNameToStore='noimage.jpg';
         }
 
-        $cd->name=$request->input('cd_name');
-        $cd->desc=$request->input('cd_textarea');
-        $cd->price=$request->input('cd_price');
-        $cd->images=$fileNameToStore;
-        $cd->save();
-
+        CD::create([
+            'name'=>$request->input('cd_name'),
+            'desc'=>$request->input('cd_textarea'),
+            'price'=>$request->input('cd_price'),
+            'images'=>$fileNameToStore
+      
+        ]);
         session()->flash("success-updated","Your CD Product has been updated");
         return redirect()->route('cd');
 

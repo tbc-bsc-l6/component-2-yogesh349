@@ -87,13 +87,14 @@ class GameController extends Controller
         }else{
             $fileNameToStore='noimage.jpg';
         }
-        $game = new Game();
-        $game->name=$request->input('game_name');
-        $game->desc=$request->input('game_textarea');
-        $game->price=$request->input('game_price');
-        $game->images=$fileNameToStore;
-        $game->save();
 
+        Game::create([
+            'name'=>$request->input('game_name'),
+            'desc'=>$request->input('game_textarea'),
+            'price'=>$request->input('game_price'),
+            'images'=>$fileNameToStore
+      
+        ]);
         session()->flash("success","Your Game Product has been added");
         return redirect()->route('game');
     }
@@ -170,12 +171,13 @@ class GameController extends Controller
         }else{
             $fileNameToStore='noimage.jpg';
         }
-        $game=Game::find($id);
-        $game->name=$request->input('game_name');
-        $game->desc=$request->input('game_textarea');
-        $game->price=$request->input('game_price');
-        $game->images=$fileNameToStore;
-        $game->save();
+        Game::create([
+            'name'=>$request->input('game_name'),
+            'desc'=>$request->input('game_textarea'),
+            'price'=>$request->input('game_price'),
+            'images'=>$fileNameToStore
+      
+        ]);
 
         session()->flash("success-updated","Your Game Product has been updated");
         return redirect()->route('game');

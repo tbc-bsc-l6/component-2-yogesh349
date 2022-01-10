@@ -44,47 +44,76 @@
 
 @section('item-display')
 <div class="container home_collec">
-    <div class="row">
-      @foreach ($books as $book)
-      <div class="col-lg-4 text-center">
-        <img src="storage/gfile/{{$book->images}}"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect></img>
-        {{-- <img class="d-block w-100" width="140" height="140" alt="..."> --}}
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    @foreach ($books as $book)
+    <div class="col">
+      <div class="card shadow-sm">
+        <img src="images/game3.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
+        <p class="text-center"><strong>{{$book->name}}</strong></p>
 
-        <p style="font-size: 20px; color:black">{{$book->name}}</p>
-        <p>Some representative placeholder content for the three columns of text below the carousel.</p>
-        <p><a class="btn btn-dark" href="{{route('show_p',$book->id)}}">View details »</a></p>
+        <div class="card-body">
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+            <a class="btn btn-sm btn-outline-secondary" href="{{route('show_p',$book->id)}}">View</a>
+            <a class="btn btn-sm btn-outline-secondary" href="{{route('edit_book',$book->id)}}" >Edit</a>
+            <a class="btn btn-sm btn-outline-secondary" href="{{route('delete_book',$book->id)}}">Delete</a>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
       </div>
-      @endforeach
+    </div>
+    @endforeach
 
-      @foreach ($cds as $cd)
-      <div class="col-lg-4 text-center">
-        <img src="storage/gfile/{{$cd->images}}"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect></img>
-        {{-- <img class="d-block w-100" width="140" height="140" alt="..."> --}}
+    @foreach ($games as $game)
+    <div class="col">
+      <div class="card shadow-sm">
+        <img src="images/game3.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
+        <p class="text-center"><strong>{{$game->name}}</strong></p>
 
-        <p style="font-size: 20px; color:black">{{$cd->name}}</p>
-        <p>Some representative placeholder content for the three columns of text below the carousel.</p>
-        <p><a class="btn btn-dark" href="{{route('show_CD',$cd->id)}}">View details »</a></p>
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, esse accusamus, illum blanditiis veniam reprehenderit temporibus non.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
       </div>
-      @endforeach
+    </div>
+        
+    @endforeach
 
-      @foreach ($games as $game)
-      <div class="col-lg-4 text-center">
-        <img src="storage/gfile/{{$game->images}}"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect></img>
-        {{-- <img class="d-block w-100" width="140" height="140" alt="..."> --}}
+    @foreach ($cds as $cd)
+    <div class="col">
+      <div class="card shadow-sm">
+        <img src="images/game3.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
+        <p class="text-center"><strong>{{$cd->name}}</strong></p>
 
-        <p style="font-size: 20px; color:black">{{$game->name}}</p>
-        <p>Some representative placeholder content for the three columns of text below the carousel.</p>
-        <p><a class="btn btn-dark" href="{{route('show_p',$game->id)}}">View details »</a></p>
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, esse accusamus, illum blanditiis veniam reprehenderit temporibus non.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
       </div>
-      @endforeach
-      
+    </div>
+        
+    @endforeach
 
-      </div>
 
-      <div class="show_more">
-        <p> <a href=""> <span>SHOW MORE</span></i></a></p>
-      </div>
-</div>   
+
+   
+
+  </div>
+</div>
 @endsection
 
 @section('all_three_product_types')

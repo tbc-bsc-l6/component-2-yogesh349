@@ -36,8 +36,8 @@ Route::get('login/',function(){
 Route::get('book/book-form',[BookController::class,'create'])->name('book-form');
 Route::post('book/book-form',[BookController::class,'store']);
 Route::get('books/',[BookController::class,'index'])->name('books');
-Route::get('/book/edit-book-form/{id}',[BookController::class,'edit']);
-Route::get('book/delete/{id}',[BookController::class,'destroy']);
+Route::get('/book/edit-book-form/{id}',[BookController::class,'edit'])->name('edit_book');
+Route::get('book/delete/{id}',[BookController::class,'destroy'])->name('delete_book');
 Route::put('/book/edit-book-form/{id}',[BookController::class,'update'])->name('update_book');
 
 
