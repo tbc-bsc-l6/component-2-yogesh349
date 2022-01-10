@@ -16,11 +16,14 @@ class GameSeeder extends Seeder
     {
         //
         $faker=Faker::create();
-        foreach (range(1,15) as $value) {
+        foreach (range(1,100) as $value) {
             # code...
             DB::table('games')->insert([
                 'name'=>$faker->name(),
-                'desc'=>$faker->regexify('[A-Za-z0-9]{50}'),
+                'desc'=>'Lorem ipsum dolor sit amet
+                 consectetur adipisicing elit. Vero eaque recusandae
+                 vitae doloremque est reiciendis 
+                 magnam harum minima! At, consequuntur!',
                 'images'=>'mario_1640700275.jpg',
                 'price'=>$faker->numerify('###'),
             ]);

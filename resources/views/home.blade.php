@@ -43,106 +43,101 @@
 @endsection
 
 @section('item-display')
-<div class="container mt-5">
+<div class="container home_collec">
     <div class="row">
-        <div class="col-lg-4 text-center">
-          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-  
-          <h2>Heading</h2>
-          <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-          <p><a class="btn btn-secondary" href="#">View details »</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4 text-center">
-          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-  
-          <h2>Heading</h2>
-          <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-          <p><a class="btn btn-secondary" href="#">View details »</a></p>
-        </div><!-- /.col-lg-4 -->
+      @foreach ($books as $book)
+      <div class="col-lg-4 text-center">
+        <img src="storage/gfile/{{$book->images}}"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect></img>
+        {{-- <img class="d-block w-100" width="140" height="140" alt="..."> --}}
 
-        <div class="col-lg-4 text-center">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-    
-            <h2>Heading</h2>
-            <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-            <p><a class="btn btn-secondary" href="#">View details »</a></p>
-          </div><
+        <p style="font-size: 20px; color:black">{{$book->name}}</p>
+        <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+        <p><a class="btn btn-dark" href="{{route('show_p',$book->id)}}">View details »</a></p>
+      </div>
+      @endforeach
+
+      @foreach ($cds as $cd)
+      <div class="col-lg-4 text-center">
+        <img src="storage/gfile/{{$cd->images}}"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect></img>
+        {{-- <img class="d-block w-100" width="140" height="140" alt="..."> --}}
+
+        <p style="font-size: 20px; color:black">{{$cd->name}}</p>
+        <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+        <p><a class="btn btn-dark" href="{{route('show_CD',$cd->id)}}">View details »</a></p>
+      </div>
+      @endforeach
+
+      @foreach ($games as $game)
+      <div class="col-lg-4 text-center">
+        <img src="storage/gfile/{{$game->images}}"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect></img>
+        {{-- <img class="d-block w-100" width="140" height="140" alt="..."> --}}
+
+        <p style="font-size: 20px; color:black">{{$game->name}}</p>
+        <p>Some representative placeholder content for the three columns of text below the carousel.</p>
+        <p><a class="btn btn-dark" href="{{route('show_p',$game->id)}}">View details »</a></p>
+      </div>
+      @endforeach
+      
 
       </div>
 
-      <div class="row">
-        <div class="col-lg-4 text-center">
-          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-  
-          <h2>Heading</h2>
-          <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-          <p><a class="btn btn-secondary" href="#">View details »</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4 text-center">
-          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-  
-          <h2>Heading</h2>
-          <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-          <p><a class="btn btn-secondary" href="#">View details »</a></p>
-        </div><!-- /.col-lg-4 -->
-
-        <div class="col-lg-4 text-center">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-    
-            <h2>Heading</h2>
-            <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-            <p><a class="btn btn-secondary" href="#">View details »</a></p>
-          </div><
-
+      <div class="show_more">
+        <p> <a href=""> <span>SHOW MORE</span></i></a></p>
       </div>
-
-
 </div>   
 @endsection
 
 @section('all_three_product_types')
-<div class="container mt-5 p-4 ">
+<div class="home_collec">
+  <div class="container mt-5 p-4">
     <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+        <div class="col-md-7 home-color">
+          <h2 class="featurette-heading ">First featurette heading.</h2>
           <p class="lead mt-5">Some great placeholder content for the first featurette here. Imagine some exciting prose here.
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, distinctio. Consequuntur quo hic similique, atque vitae nobis repudiandae nesciunt vero tempore? Doloribus minus possimus sint cum quidem quasi laudantium quos.
           </p>
         </div>
 
         <div class="col-md-5">
-          <img src="images/squid.png" width="450" height="400" alt="">
+          <img src="images/squid.png"  class="home-image"   alt="">
         </div>
       </div>
 
 
-      <div class="row featurette mt-5">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+      <div class="row featurette home-margin">
+        <div class="col-md-7 order-md-2 home-color">
+          <h2 class="featurette-heading text-center">Oh yeah, it’s that good.</h2>
           <p class="lead mt-5">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates, unde nisi id velit quo vitae eius assumenda tenetur minus blanditiis minima dicta, officia aspernatur repudiandae ullam eos? Molestias, nulla totam?
           </p>
         </div>
         <div class="col-md-5 order-md-1">
-            <img src="images/book.jpg" width="450" height="400" alt="">
+            <img src="images/book.jpg" class="home-image"  alt="">
         </div>
       </div>
 
 
-      <div class="row featurette mt-5">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead mt-5">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.
+      <div class="row featurette home-margin">
+        <div class="col-md-7 home-color">
+          <h2 class="featurette-heading">And lastly, this one.</h2>
+          <p class="lead mt-5 ">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita at voluptatibus cum sed odit doloribus eveniet asperiores, facere molestiae aliquam ipsam laboriosam, reiciendis commodi maxime amet ipsum et adipisci. Quidem! </p>
         </div>
         <div class="col-md-5">
-            <img src="images/cd.jpg" width="450" height="400" alt="">
+            <img src="images/cd.jpg" class="home-image"   alt="">
           
   
         </div>
       </div>
 
 </div>
+
+
+
+
+</div>
+
+
 
 
 

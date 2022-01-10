@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class GameController extends Controller
 {
@@ -12,10 +13,20 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         //
-        $games=Game::paginate(5);
+       
+        $games=Game::paginate(10);
+        if($req->sort=='price_desc'){
+            $games=Game::orderBy('price', 'desc')->paginate(10);
+        }elseif ($req->sort=='price_asc') {
+            $games=Game::orderBy('price', 'asc')->paginate(10);
+ 
+        }elseif ($req->sort=="newest") {
+            $games=Game::orderBy('created_at','desc')->paginate(10);
+            
+        }
         return view('game',['games'=>$games]);
         
     }
@@ -28,6 +39,10 @@ class GameController extends Controller
     public function create()
     {
         //
+
+        if(Gate::denies('isGameAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         return view('gameForm');
 
     }
@@ -41,6 +56,9 @@ class GameController extends Controller
     public function store(Request $request)
     {
 
+        if(Gate::denies('isGameAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         $validated = $request->validate([
 
             'game_name'=>'required',
@@ -99,6 +117,9 @@ class GameController extends Controller
      */
     public function edit(Game $game,$id)
     {
+        if(Gate::denies('isGameAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         $game=Game::find($id);
         return view('edit_gameform',['game'=>$game]);
     }
@@ -110,9 +131,56 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
+    public function update(Request $request, Game $game,$id)
     {
-        //
+        
+        if(Gate::denies('isGameAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
+
+
+
+        
+
+
+        $validated = $request->validate([
+
+            'game_name'=>'required',
+            'game_price'=>'required',
+            'game_textarea'=>'required',
+            'game_file'=>'required',
+        ]);
+
+
+        if($request->hasFile('game_file')){
+
+            $filenameWithExt=$request->file('game_file')->getClientOriginalName();
+
+
+            //get just filename
+            $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+
+            //GET JUST EXTENSION
+            $ext=$request->file('game_file')->getClientOriginalExtension();
+
+            $fileNameToStore=$filename ."_".time().".".$ext;
+
+            $path=$request->file('game_file')->storeAs('public/gfile',$fileNameToStore);
+
+        }else{
+            $fileNameToStore='noimage.jpg';
+        }
+        $game=Game::find($id);
+        $game->name=$request->input('game_name');
+        $game->desc=$request->input('game_textarea');
+        $game->price=$request->input('game_price');
+        $game->images=$fileNameToStore;
+        $game->save();
+
+        session()->flash("success-updated","Your Game Product has been updated");
+        return redirect()->route('game');
+
+
     }
 
     /**
@@ -123,7 +191,9 @@ class GameController extends Controller
      */
     public function destroy(Game $game,$id)
     {
-        //
+        if(Gate::denies('isGameAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         Game::destroy($id);
         session()->flash('delete_success','Your game item has been deleted');
        return redirect('game');

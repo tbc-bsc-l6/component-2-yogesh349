@@ -6,7 +6,8 @@
 
 }
 body{
-    background-color: #d9d9d9;
+    background-color: #fff6f6;
+    
 }
 img{
     opacity: 1;
@@ -27,20 +28,26 @@ img{
 }
 .alink{
     padding: 13px 14px;
-    color: black;
+    color: #000000;
     text-decoration: none;
-    transition: 0.4s;
+    font-size: 20px;
+   
  
 }
 .alink:hover{
-    background-color: #fcb103;
-    font-size: 1.2em;
+    /* background-color: #fcb103; */
+    /* font-size: 1.2em; */
+    text-decoration: underline;
+    transition: 0.4s;
+    color: blue;
 
 }
 
+
+
 .searchbutton{
-    height: 80px;
-    /* background-color: #fcb103; */
+    height: 90px;
+    background: linear-gradient(90deg, rgba(48,41,159,1) 0%, rgba(0,0,0,1) 0%, rgba(77,154,154,1) 0%, rgba(5,78,60,1) 0%, rgb(192 189 245) 0%, rgba(0,255,175,1) 100%);
     display: flex;
     justify-content: space-between;
 
@@ -69,46 +76,33 @@ img{
     height: 48px;
   }
   
-  .deal{
+  .home_collec{
       margin-top: 115px;
   }
-  .deal-items{
-      display: flex;
-      margin-top: 25px;
-      justify-content: center;
+  .home-margin{
+      margin-top: 6rem;
   }
 
-  .bestdeal{
-      border: 1px solid black;
-      margin: 2px 13px;
-  }
-
-.pDeals{
-    padding: 5px;
-    color: white;
-    background-color: red;
-    width: 90px;
-    font-family: 'PT Serif', serif;
-
+.home-color{
+    font-size: 1.2em;
+    padding: 35px;
+    border-radius: 21px 10px 0px 81px;
+    background: linear-gradient(90deg, rgba(48,41,159,1) 0%, rgba(219,27,27,0.5326505602240896) 0%, rgba(15,156,156,1) 0%, rgba(13,62,129,0.025647759103641476) 0%, rgba(221,225,231,1) 0%, rgba(253,255,254,1) 100%, rgba(4,0,0,1) 100%, rgba(73,102,93,1) 100%, rgba(23,24,23,1) 100%, rgba(255,255,255,1) 100%, rgba(22,16,140,1) 100%);
 }
 
-.b-text{
-    padding-left: 19px;
+.show_more{
+    float: right;
+    text-decoration: none;
 }
-.price{
-    font-size: 24px;
-    padding-left: 15px;
+.show_more p a{
+    text-decoration: none;
+    font-size: 17px;
 }
 
-.btnDeal{
-    width: 135px;
-    padding: 4px;
-    margin-left: 30px;
-    margin-bottom: 5px;
-    color: #fff;
-    background-color: black;
-    border-radius: 7px;
-
+.home-image{
+    width: 400px;
+    height: 380px;
+    border-radius: 19px 60px;
 }
 .google-map{
     margin-top: 6em;
@@ -117,9 +111,10 @@ img{
 
  /*  Footer Css */
 footer{
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
     margin-top: 100px;
     color: rgb(53, 37, 7);
+    border-top: 1px solid rgb(187, 180, 180);
 }
 
 .flex-footer{
@@ -159,15 +154,17 @@ footer{
 
 .game-cont{
     margin: 64px 0px;
-    background-color: #d9d9d9;
+    background-color: #fff6f6;
     padding: 5em;
 }
 .game-head-row{
+    display: flex;
     margin: 2em;
     padding: 2em;
 
 }
 .game-row{
+    display: flex;
     margin: 2em;
     padding: 2em;
     border-radius: 8px;
@@ -190,6 +187,7 @@ footer{
     width: 100%;
     line-height:2;
 }
+
 /* CD Page */
 
 
@@ -216,10 +214,38 @@ footer{
 /* Pagination */
 
 .pag-cus{
-    padding-left: 40%;
-
+    display: flex;
+    justify-content: center;
 }
 
 .forget-pass{
     margin-left: 20em;
+}
+.product_v{
+    margin-top: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+}
+
+.image_coll{
+    width: 99vw;
+}
+
+.btn_p{
+    float: right;
+}
+
+.display_P_I{
+    width: 72%;
+}
+
+
+.sort-font{
+    text-decoration: none;
+    color: black;
+    padding: 3px;
+}
+select {
+    padding: 5px;
+    border: none;
 }

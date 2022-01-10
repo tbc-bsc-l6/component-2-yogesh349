@@ -40,6 +40,15 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
-        //
+
+        Gate::define('isCDAdmin',function($user){
+            if($user->email==="yogeshchaudhary5760@gmail.com"){
+                return true;
+            }else{
+                return false;
+            }
+        });
+
+        
     }
 }

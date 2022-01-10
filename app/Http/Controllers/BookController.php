@@ -13,9 +13,19 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
+        
         $books=Book::paginate(10);
+        if($req->sort=='price_desc'){
+            $books=Book::orderBy('price', 'desc')->paginate(10);
+        }elseif ($req->sort=='price_asc') {
+            $books=Book::orderBy('price', 'asc')->paginate(10);
+ 
+        }elseif ($req->sort=="newest") {
+            $books=Book::orderBy('created_at','desc')->paginate(10);
+            
+        }
         return view('books',['books'=>$books]);
         
     }
@@ -42,6 +52,10 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+
+        if(Gate::denies('isBookAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         $validated = $request->validate([
 
             'book_name'=>'required',
@@ -99,6 +113,9 @@ class BookController extends Controller
      */
     public function edit(Book $book,$id)
     {
+        if(Gate::denies('isBookAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         
         $book=Book::find($id);
         if(Gate::denies('isBookAdmin',$book)){
@@ -117,6 +134,9 @@ class BookController extends Controller
     public function update(Request $request, Book $book,$id)
     {
         //
+        if(Gate::denies('isBookAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         $book=Book::find($id);
 
         $validated = $request->validate([
@@ -169,6 +189,9 @@ class BookController extends Controller
     public function destroy(Book $book,$id)
     {
         //
+        if(Gate::denies('isBookAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         Book::destroy($id);
         session()->flash('delete_success','Your book item has been deleted');
        return redirect()->route('books');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CD;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CDController extends Controller
 {
@@ -12,10 +13,19 @@ class CDController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
 
         $cd=CD::paginate(10);
+        if($req->sort=='price_desc'){
+            $cd=CD::orderBy('price', 'desc')->paginate(10);
+        }elseif ($req->sort=='price_asc') {
+            $cd=CD::orderBy('price', 'asc')->paginate(10);
+ 
+        }elseif ($req->sort=="newest") {
+            $cd=CD::orderBy('created_at','desc')->paginate(10);
+            
+        }
         return view('cd',['cds'=>$cd]);
 
     }
@@ -27,7 +37,10 @@ class CDController extends Controller
      */
     public function create()
     {
-        //
+        
+        if(Gate::denies('isCDAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         return view('cdForm');
     }
 
@@ -39,7 +52,9 @@ class CDController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Gate::denies('isCDAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
 
         $validated = $request->validate([
 
@@ -103,7 +118,9 @@ class CDController extends Controller
      */
     public function edit(CD $cD,$id)
     {
-        //
+        if(Gate::denies('isCDAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         $cd=CD::find($id);
         return view('edit_cdform',['cd'=>$cd]);
     }
@@ -119,8 +136,11 @@ class CDController extends Controller
     {
         //
 
+        if(Gate::denies('isCDAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
+
         $cd= CD::find($id);
-        
         $validated = $request->validate([
 
             'cd_name'=>'required',
@@ -168,6 +188,10 @@ class CDController extends Controller
     public function destroy(CD $cD,$id)
     {
         //
+        
+        if(Gate::denies('isCDAdmin')){
+            abort(403,'Unauthorized Page Request');
+        }
         CD::destroy($id);
         session()->flash('delete_success','Your CD item has been deleted');
        return redirect('cd');

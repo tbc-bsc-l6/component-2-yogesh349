@@ -18,7 +18,9 @@ class CdSeeder extends Seeder
         foreach (range(1,100) as $value) {
             DB::table('c_d_s')->insert([
                 'name'=>$faker->name(),
-                'desc'=>$faker->regexify('[A-Za-z0-9]{50}'),
+                'desc'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eaque
+                 recusandae vitae doloremque est
+                  reiciendis magnam harum minima! At, consequuntur!',
                 'images'=>'mario_1640700275.jpg',
                 'price'=>$faker->numerify('###'),
             ]);
