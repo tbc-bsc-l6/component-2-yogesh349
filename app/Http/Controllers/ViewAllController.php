@@ -37,15 +37,23 @@ class ViewAllController extends Controller
 
 
     public function search(Request $req){
-        $search_product=$_GET['search'];
-        if (preg_match("/^[a-zA-Z0-9]+$/", $search_product)){
-            $game=Game::where('name','LIKE',"%$search_product%")->paginate(10);
-            $cd=CD::where('name','LIKE',"%$search_product%")->paginate(10);
-            $book=Book::where('name','LIKE',"%$search_product%")->paginate(10);
+        $name=$_GET['search'];
+        
+
+        if(isset($name)){
+            $game=Game::where('name', 'LIKE', "%$name%")->get();
+            $cd=CD::where('name','LIKE',"%$name%")->get();
+            $book=Book::where('name','LIKE',"%$name%")->get();
+
             $concatenateAll=$game->concat($cd)->concat($book)->paginate(10);
             $concatenateAll->all();
+           
             return view('searchproduct',['concatenateAll'=>$concatenateAll]);
         }
+        
+
+
+        abort(402,'Enter some value in search Field');
 
 
 
