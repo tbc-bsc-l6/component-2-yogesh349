@@ -24,7 +24,7 @@ class BookSeeder extends Seeder
                 t consectetur adipisicing elit. Vero eaque r
                 ecusandae vitae doloremque est reiciendis 
                 magnam harum minima! At, consequuntur!',
-                'images'=>'mario_1640700275.jpg',
+                'images'=>'books_1641885753.jpg',
                 'price'=>$faker->numerify('###'),
             ]);
         }

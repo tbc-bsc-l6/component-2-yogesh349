@@ -106,9 +106,12 @@ class CDController extends Controller
      * @param  \App\Models\CD  $cD
      * @return \Illuminate\Http\Response
      */
-    public function show(CD $cD)
+    public function show(CD $cD,$id)
     {
         //
+
+        $cd =CD::find($id);
+        return view('dpcd',['cd'=>$cd]);
     }
 
     /**

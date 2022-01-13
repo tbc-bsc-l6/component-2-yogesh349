@@ -19,17 +19,11 @@ use App\Http\Controllers\ViewAllController;
 */
 
 Route::get('/', [ViewAllController::class,'showHome']);
-Route::get('showProduct/{id}',[ViewAllController::class,'showProduct_Game'])->name('show_p');
-
-
-Route::get('showProduct_CD/{id}',[ViewAllController::class,'showProduct_CD'])->name('show_CD');
-
-
+Route::get('AllProducts/', [ViewAllController::class,'AllProducts']);
 Route::get('searchProduct/',[ViewAllController::class,'search'])->name('search');
+Route::get('about',function(){
+    return view('about');
 
-
-Route::get('login/',function(){
-    return view('login');
 });
 
 //Book Routes
@@ -39,15 +33,17 @@ Route::get('books/',[BookController::class,'index'])->name('books');
 Route::get('/book/edit-book-form/{id}',[BookController::class,'edit'])->name('edit_book');
 Route::get('book/delete/{id}',[BookController::class,'destroy'])->name('delete_book');
 Route::put('/book/edit-book-form/{id}',[BookController::class,'update'])->name('update_book');
+Route::get('showProductbook/{id}',[BookController::class,'show'])->name('show_pb');
 
 
 // Game Route
 Route::get('game/',[GameController::class,'index'])->name('game');
 Route::get('game/game-form',[GameController::class,'create'])->name('game-form');
 Route::post('game/game-form',[GameController::class,'store']);
-Route::get('/game/edit-game-form/{id}',[GameController::class,'edit']);
-Route::get('game/delete/{id}',[GameController::class,'destroy']);
+Route::get('/game/edit-game-form/{id}',[GameController::class,'edit'])->name('edit_game');
+Route::get('game/delete/{id}',[GameController::class,'destroy'])->name('delete_game');
 Route::put('/game/edit-game-form/{id}',[GameController::class,'update'])->name('update-game');
+Route::get('showProductgame/{id}',[GameController::class,'show'])->name('show_pg');
 
 
 // CD FORM
@@ -55,9 +51,10 @@ Route::put('/game/edit-game-form/{id}',[GameController::class,'update'])->name('
 Route::get('cd',[CDController::class,'index'])->name('cd');
 Route::get('cd/cd-form',[CDController::class,'create'])->name('cd-form');
 Route::post('cd/cd-form',[CDController::class,'store']);
-Route::get('/cd/edit-cd-form/{id}',[CDController::class,'edit']);
-Route::get('cd/delete/{id}',[CDController::class,'destroy']);
+Route::get('/cd/edit-cd-form/{id}',[CDController::class,'edit'])->name('edit_cd');
+Route::get('cd/delete/{id}',[CDController::class,'destroy'])->name('delete_cd');
 Route::put('/cd/edit-cd-form/{id}',[CDController::class,'update'])->name('update_cd');
+Route::get('showProductcd/{id}',[CDController::class,'show'])->name('show_pc');
 
 //Form
 Auth::routes();

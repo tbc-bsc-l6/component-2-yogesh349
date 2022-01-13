@@ -21,7 +21,7 @@ class CdSeeder extends Seeder
                 'desc'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eaque
                  recusandae vitae doloremque est
                   reiciendis magnam harum minima! At, consequuntur!',
-                'images'=>'mario_1640700275.jpg',
+                'images'=>'cds_1641884761.jpg',
                 'price'=>$faker->numerify('###'),
             ]);
         }

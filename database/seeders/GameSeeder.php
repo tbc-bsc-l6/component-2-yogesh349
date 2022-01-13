@@ -24,7 +24,7 @@ class GameSeeder extends Seeder
                  consectetur adipisicing elit. Vero eaque recusandae
                  vitae doloremque est reiciendis 
                  magnam harum minima! At, consequuntur!',
-                'images'=>'mario_1640700275.jpg',
+                'images'=>'game3_1641885625.jpg',
                 'price'=>$faker->numerify('###'),
             ]);
         }

@@ -3,7 +3,6 @@
         <div class="footer-help">
             <h2>Clovers.</h2>
             <h4>Need Help</h4>
-            <div class="help">Visit our <a href="">Customer Support </a> <br> for assistance or call us at</div>
             <h5>9814706157</h5>
          </div>
             <div class="list-footer-items">

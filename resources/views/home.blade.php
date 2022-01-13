@@ -45,68 +45,27 @@
 @section('item-display')
 <div class="container home_collec">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    @foreach ($books as $book)
+    @foreach ($concatenateAll as $game)
     <div class="col">
       <div class="card shadow-sm">
-        <img src="images/game3.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
-        <p class="text-center"><strong>{{$book->name}}</strong></p>
-
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-            <a class="btn btn-sm btn-outline-secondary" href="{{route('show_p',$book->id)}}">View</a>
-            <a class="btn btn-sm btn-outline-secondary" href="{{route('edit_book',$book->id)}}" >Edit</a>
-            <a class="btn btn-sm btn-outline-secondary" href="{{route('delete_book',$book->id)}}">Delete</a>
-            </div>
-            <small class="text-muted">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    @endforeach
-
-    @foreach ($games as $game)
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="images/game3.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
+        <img src="storage/gfile/{{$game->images}}" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
         <p class="text-center"><strong>{{$game->name}}</strong></p>
 
         <div class="card-body">
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, esse accusamus, illum blanditiis veniam reprehenderit temporibus non.</p>
+          <p class="card-text">{{$game->desc}}.</p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              <a class="btn btn-sm btn-outline-primary" href="{{route('show_pg',$game->id)}}">View</a>
             </div>
             <small class="text-muted">9 mins</small>
           </div>
         </div>
       </div>
-    </div>
-        
+    </div>   
     @endforeach
 
-    @foreach ($cds as $cd)
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="images/game3.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
-        <p class="text-center"><strong>{{$cd->name}}</strong></p>
 
-        <div class="card-body">
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, esse accusamus, illum blanditiis veniam reprehenderit temporibus non.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-        
-    @endforeach
+
 
 
 
@@ -114,6 +73,7 @@
 
   </div>
 </div>
+<div class="mt-2"><a href="" style="text-decoration:none;float: right;margin-right:7em; ">SHOP MORE</a></div>
 @endsection
 
 @section('all_three_product_types')

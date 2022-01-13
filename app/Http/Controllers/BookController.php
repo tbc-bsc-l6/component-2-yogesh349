@@ -84,9 +84,9 @@ class BookController extends Controller
             $fileNameToStore='noimage.jpg';
         }
         Book::create([
-            'name'=>$request->input('game_name'),
-            'desc'=>$request->input('game_textarea'),
-            'price'=>$request->input('game_price'),
+            'name'=>$request->input('book_name'),
+            'desc'=>$request->input('book_textarea'),
+            'price'=>$request->input('book_price'),
             'images'=>$fileNameToStore
       
         ]);
@@ -101,9 +101,11 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show(Book $book,$id)
     {
         //
+        $book =Book::find($id);
+        return view('dpbook',['book'=>$book]);
     }
 
     /**

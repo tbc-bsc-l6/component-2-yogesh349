@@ -26,10 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $books=Book::take(3)->get();
         $cds=CD::take(3)->get();
         $games=Game::take(3)->get();
-  
-        return view('home',['books'=>$books,'cds'=>$cds,'games'=>$games]);
+        $concatenateAll=$games->concat($cds)->concat($books);
+        $concatenateAll->all();
+        return view('home',['concatenateAll'=>$concatenateAll]);
     }
 }

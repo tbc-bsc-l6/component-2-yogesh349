@@ -33,7 +33,7 @@
               <option value="newest">Newest</option>
           </select>
       
-          <input type="submit" name="submit" class="btn btn-success">
+          <input type="submit" value="Sort" name="submit" class="btn btn-success">
       </form>
       </div>
      </div>
@@ -45,19 +45,20 @@
      @foreach ($books as $book)
       <div class="col">
         <div class="card shadow-sm">
-          <img src="images/game3.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
+          <img src="storage/gfile/{{$book->images}}" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
           <p class="text-center"><strong>{{$book->name}}</strong></p>
   
           <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, esse accusamus, illum blanditiis veniam reprehenderit temporibus non.</p>
+            <p class="card-text">{{$book->desc}}</p>
+            <p class="text-center"><strong>${{$book->price}}</strong></p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <a href="" class="btn btn-sm btn-outline-secondary">View</a>
+                <a href="{{route('show_pb',$book->id)}}" class="btn btn-sm btn-outline-primary">View</a>
                 @can('isGameAdmin')
-                <a href="{{url('book/edit-book-form',$book->id)}}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="{{url('book/edit-book-form',$book->id)}}" class="btn btn-sm btn-outline-warning">Edit</a>
                 @endcan
                 @can('isGameAdmin')
-                <a href="{{url('book/delete',$book->id)}}" class="btn btn-sm btn-outline-secondary">Delete</a>
+                <a href="{{url('book/delete',$book->id)}}" class="btn btn-sm btn-outline-danger">Delete</a>
                 @endcan
               </div>
               <small class="text-muted">9 mins</small>

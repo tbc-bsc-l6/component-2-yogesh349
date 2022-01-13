@@ -105,9 +105,11 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show(Game $game,$id)
     {
         //
+        $game =Game::find($id);
+        return view('dpgame',['game'=>$game]);
     }
 
     /**
