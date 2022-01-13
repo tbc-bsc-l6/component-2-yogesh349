@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title','Display Product')
 
 @section('game-collection')
 <div class="container f-flex home_collec">
