@@ -48,7 +48,7 @@
     @foreach ($concatenateAll as $game)
     <div class="col">
       <div class="card shadow-sm">
-        <img src="storage/gfile/{{$game->images}}" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
+        <img src="storage/gfile/{{$game->images ?? 'cds_1641884761.jpg'}}" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img"img>
         <p class="text-center"><strong>{{$game->name}}</strong></p>
 
         <div class="card-body">
